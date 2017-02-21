@@ -51,6 +51,7 @@ Dir.foreach(options[:filmDir]) do |file|
 end
 
 log.info "End the script"
+log.close
 
 
 
