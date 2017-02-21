@@ -10,13 +10,13 @@ OptionParser.new do |opt|
 	opt.on('--filmDir FILM DIRECTORY') { |o| options[:filmDir] = o }
 end.parse!
 
-if not /film$/.match(options[:filmDir].to_s)
-	log.error "The directory is not called 'film'"
+if not File.exist?(options[:filmDir])
+	log.error "The directory #{options[:filmDir]} doesn't exist"
 	exit -1
 end
 
-if not File.exist?(options[:filmDir])
-	log.error "The directory #{options[:filmDir]} doesn't exist"
+if not /film$/.match(options[:filmDir].to_s)
+	log.error "The directory is not called 'film'"
 	exit -1
 end
 
