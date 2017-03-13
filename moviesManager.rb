@@ -4,6 +4,9 @@ require 'logger'
 
 log = Logger.new(STDOUT)
 
+#### Ajouter une deuxxième option, si le répertoire film ne se trouve pas au meme niveau que les dates !!!!
+
+
 log.info "Parsing script arguments"
 options = {}
 OptionParser.new do |opt|
@@ -15,16 +18,11 @@ if not File.exist?(options[:filmDir])
 	exit -1
 end
 
-if not /film$/.match(options[:filmDir].to_s)
-	log.error "The directory is not called 'film'"
-	exit -1
-end
-
 log.info "Script arguments : #{options}" 
 
 tabPeriodes = Array.new 
 
-# parsing directories
+# parsing date directories 
 Dir.foreach(options[:filmDir]) do |file|
 	log.debug "Parsing dir :#{options[:filmDir]}/#{file}"
 	if res1=/^\d\d\d\d-\d\d\d\d$/.match(file)
@@ -34,7 +32,7 @@ Dir.foreach(options[:filmDir]) do |file|
 	end
 end
 
-# Parsing files
+# Parsing movies files
 Dir.foreach(options[:filmDir]) do |file|
 	log.debug "Parsing file :#{options[:filmDir]}/#{file}"
 	if res1=/\.\d\d\d\d\./.match(file)
