@@ -4,8 +4,6 @@ require 'logger'
 
 log = Logger.new(STDOUT)
 
-#### Ajouter une deuxxième option, si le répertoire film ne se trouve pas au meme niveau que les dates !!!!
-
 
 log.info "Parsing script arguments"
 options = {}
